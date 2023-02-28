@@ -1,0 +1,21 @@
+<table class="board">
+  <tr>
+    <td></td>
+    <td *ngFor="let col of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']" class="label">{{ col }}</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let row of board; let i = index">
+    <td class="label">{{ 8 - i }}</td>
+    <td *ngFor="let cell of row" [ngClass]="getCellClass(cell)">
+      <div cdkDrag [cdkDragData]="cell" *ngIf="cell.piece" class="piece">
+        <img *ngIf="cell.piece" [src]="cell.piece" cdkDragBoundary=".board" cdkDrag>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table class="captured-pieces">
+  <td *ngFor="let piece of capturedPieces" class="piece">
+    <img [src]="piece" class="img">
+  </td>
+</table>

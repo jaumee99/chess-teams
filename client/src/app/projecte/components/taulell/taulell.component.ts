@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
 import { Cell } from '../../models/cell/cell';
 
 @Component({
@@ -24,16 +24,35 @@ export class TaulellComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>): void {
-    const previousCell = event.previousContainer.data[event.previousIndex];
-    const currentCell = event.container.data[event.currentIndex];
-
-    if (currentCell.piece !== '') {
-      this.capturedPieces.push(currentCell.piece);
-    }
-
-    currentCell.piece = previousCell.piece;
-    previousCell.piece = '';
+    moveItemInArray(
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
+
+  onDrop(event: CdkDragDrop<any>): void {
+    const previousCell = event.previousContainer.data;
+    const currentCell = event.container.data;
+  
+    if (previousCell === currentCell) {
+      return;
+    }
+  
+    if (currentCell.piece) {
+      this.capturedPieces.push(previousCell.piece);
+      previousCell.piece = '';
+    }
+  
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+  }
+  
+  
 
   private initializeBoard() {
     for (let i = 0; i < 8; i++) {

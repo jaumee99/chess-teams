@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Cell } from '../../models/cell/cell';
 import { Board } from '../../models/board/board';
 
@@ -8,6 +8,7 @@ import { Board } from '../../models/board/board';
   styleUrls: ['./taulell.component.css']
 })
 export class TaulellComponent implements OnInit {
+  @Input() reverse: boolean = false;
   capturedPiecesW: string[] = [];
   capturedPiecesB: string[] = [];
   private _board: Board;
@@ -17,7 +18,10 @@ export class TaulellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if (this.reverse) {
+      this._board.board.reverse();
+      this._board.board.forEach(row => row.reverse());
+    }
   }
 
   get board(): Board {

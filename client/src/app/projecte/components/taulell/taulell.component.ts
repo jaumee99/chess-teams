@@ -37,6 +37,11 @@ export class TaulellComponent implements OnInit {
       console.log('same container');
     } else {
       console.log('different container');
+      if (currentCell.piece !== '') {
+        this.capturedPieces.push(currentCell.piece);
+        currentCell.piece = previousCell.piece;
+        previousCell.piece = '';
+      }
     }
   }
 

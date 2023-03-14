@@ -1,3 +1,9 @@
+<table class="captured-pieces-withe">
+  <td *ngFor="let piece of capturedPiecesW" class="piece">
+    <img [src]="piece" class="img">
+  </td>
+</table>
+
 <table class="board" cdkDropListGroup>
   <tr>
     <td></td>
@@ -6,7 +12,7 @@
   </tr>
   <tr *ngFor="let row of board.board; let i = index">
     <td class="label">{{ 8 - i }}</td>
-    <td cdkDropList (cdkDropListDropped)="drop($event)" *ngFor="let cell of row" [ngClass]="getCellClass(cell)"  [cdkDropListData]="cell">
+    <td class="cell" cdkDropList (cdkDropListDropped)="drop($event)" *ngFor="let cell of row" [ngClass]="getCellClass(cell)"  [cdkDropListData]="cell">
       <div cdkDrag *ngIf="cell.piece" class="piece">
         <img *ngIf="cell.piece" [src]="cell.piece" cdkDragBoundary=".board" cdkDrag>
       </div>
@@ -14,8 +20,8 @@
   </tr>
 </table>
 
-<table class="captured-pieces">
-  <td *ngFor="let piece of capturedPieces" class="piece">
+<table class="captured-pieces-black">
+  <td *ngFor="let piece of capturedPiecesB" class="piece">
     <img [src]="piece" class="img">
   </td>
 </table>

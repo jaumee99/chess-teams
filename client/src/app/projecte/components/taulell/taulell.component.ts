@@ -9,7 +9,8 @@ import { Board } from '../../models/board/board';
   styleUrls: ['./taulell.component.css']
 })
 export class TaulellComponent implements OnInit {
-  capturedPieces: string[] = [];
+  capturedPiecesW: string[] = [];
+  capturedPiecesB: string[] = [];
   private _board: Board;
 
   constructor() {
@@ -38,9 +39,18 @@ export class TaulellComponent implements OnInit {
     } else {
       console.log('different container');
       if (currentCell.piece !== '') {
-        this.capturedPieces.push(currentCell.piece);
+        if (currentCell.piece.includes('w')) {
+        this.capturedPiecesW.push(currentCell.piece);
         currentCell.piece = previousCell.piece;
         previousCell.piece = '';
+        } else {
+          this.capturedPiecesB.push(currentCell.piece);
+          currentCell.piece = previousCell.piece;
+          previousCell.piece = '';
+        }
+      } else {
+        currentCell.piece = previousCell.piece;
+        previousCell.piece = '';  
       }
     }
   }

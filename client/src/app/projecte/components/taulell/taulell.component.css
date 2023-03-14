@@ -37,11 +37,3 @@
   width: 40px;
   height: 40px;
 }
-
-.captured-pieces {
-  background-color: #F5F5F5;
-  height: 100px;
-  width: 200px;
-  padding: 10px;
-  overflow: auto;
-}

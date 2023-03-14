@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Cell } from '../../models/cell/cell';
 import { Board } from '../../models/board/board';
+import { Cell } from '../../models/cell/cell';
 
 @Component({
-  selector: 'app-taulell',
-  templateUrl: './taulell.component.html',
-  styleUrls: ['./taulell.component.css']
+  selector: 'app-taulell2',
+  templateUrl: './taulell2.component.html',
+  styleUrls: ['./taulell2.component.css']
 })
-export class TaulellComponent implements OnInit {
+export class Taulell2Component implements OnInit {
   capturedPiecesW: string[] = [];
   capturedPiecesB: string[] = [];
   private _board: Board;
@@ -53,6 +53,4 @@ export class TaulellComponent implements OnInit {
       }
     }
   }
-
 }
-
